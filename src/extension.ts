@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// context.subscriptions.push(disposable);
 	// register a command that is invoked when the status bar
 	// item is selected
-	const myCommandId = 'original-resin-status.myWord';
+	const myCommandId = 'original-resin-status.myHello';
 	context.subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
 		const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
 		vscode.window.showInformationMessage(`Yeah, ${n+1} line(s) selected... Keep going!`);
@@ -60,6 +60,56 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// update status bar item once at start
 	updateStatusBarItem();
+	const panel = vscode.window.createWebviewPanel(
+		'juejin-posts', // 只供内部使用，这个 webview 的标识
+		'Juejin Posts', // 给用户显示的面板标题
+		vscode.ViewColumn.One, // 给新的 webview 面板一个编辑器视图
+		{
+		  enableScripts: true, // 启用 javascript 脚本
+		  retainContextWhenHidden: true, // 隐藏时保留上下文
+		} // webview 面板的内容配置
+	);
+	function getWebviewContent() {
+		return `
+		  <!DOCTYPE html>
+		  <html lang="en">
+		  <head>
+			  <meta charset="UTF-8">
+			  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+			  <title>Juejin Posts</title>
+			  <style>
+				html, body {
+				  padding: 0px;
+				  height: 100vh;
+				  position: relative;
+				  margin: 0;
+				  padding: 0;
+				  overflow: hidden;
+				}
+				#yoyo {
+				  position: absolute;
+				  bottom: 50px;
+				  right: -90px;
+				  opacity: 0;
+				  transition: .25s ease-in-out
+				}
+				#yoyo:hover {
+				  opacity: 1;
+				  right: 0;
+				}
+			  </style>
+		  </head>
+		  <body>
+			<div>233</div>
+			<a href="https://juejin.cn"><img id="yoyo" src="https://cdn.jsdelivr.net/gh/youngjuning/images/20210817163229.png" width="100" /></a>
+		  </body>
+		  </html>
+		`;
+	  }
+
+	  // 给 webview panel 设置 HTML 内容
+	  panel.webview.html = getWebviewContent();
+
 }
 
 // This method is called when your extension is deactivated

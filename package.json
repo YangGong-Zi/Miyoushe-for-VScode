@@ -14,10 +14,28 @@
   "contributes": {
     "commands": [
       {
-        "command": "original-resin-status.myWord",
-        "title": "myWord"
+        "command": "original-resin-status.myHello",
+        "title": "myHello"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sidebar-view",
+          "title": "sidebar view example",
+          "icon": "assets/logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "sidebar-view": [
+        {
+          "id": "sidebar-view-container",
+          "type": "webview",
+          "name": "sidebar view"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
