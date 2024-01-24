@@ -30,7 +30,7 @@
     "views": {
       "sidebar-view": [
         {
-          "id": "sidebar-view-container",
+          "id": "resin.open",
           "type": "webview",
           "name": "sidebar view"
         }
