@@ -1,73 +1,52 @@
 import {
-    Uri,
     WebviewView,
     WebviewViewProvider,
-    WebviewViewResolveContext,
-    CancellationToken,
-  } from 'vscode';
-//   import { configState } from './utils/config';
-  export default class ReaderViewProvider implements WebviewViewProvider {
-
+} from 'vscode';
+import * as vscode from "vscode";
+import {getNonce} from './getNonce';
+  export default class ReaderViewProvider implements WebviewViewProvider  {
     public static readonly viewType = 'resin.open';
-
     private _view ? : WebviewView;
-
     constructor(
-      private readonly _extensionUri: Uri,
+      // private readonly _extensionUri: Uri,
+      protected context: vscode.ExtensionContext,
+      private readonly _extensionUri: vscode.Uri = context.extensionUri
     ) {}
-
+    dispose(): void { }
     public resolveWebviewView(
       webviewView: WebviewView,
-      context: WebviewViewResolveContext,
-      _token: CancellationToken,
     ) {
       this._view = webviewView;
 
       this._view.webview.options = {
         enableScripts: true,
+        localResourceRoots: [this._extensionUri],
       };
-
-      this._view.webview.html = this.getHtmlForWebview();
+      this._view.webview.html = this.getHtmlForWebview(this._view.webview);
     }
-
-    private getHtmlForWebview() {
-    //   const { scale } = configState;
-    //   const width = 95 / scale;
-    //   const height = width;
+    private getHtmlForWebview(webview: vscode.Webview) {
+      const scriptUri = webview.asWebviewUri(
+        vscode.Uri.joinPath(this._extensionUri, "dist", "static/index-Gt8FvDab.js")
+      );
+      const styleMainUri = webview.asWebviewUri(
+        vscode.Uri.joinPath(this._extensionUri, "dist", "static/index--qa-DmES.css")
+      );
+       // Use a nonce to 只允许特定脚本运行.
+    const nonce = getNonce();
       return `
       <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Juejin Posts</title>
-          <style>
-            html, body {
-              padding: 0px;
-              height: 100vh;
-              position: relative;
-              margin: 0;
-              padding: 0;
-              overflow: hidden;
-            }
-            #yoyo {
-              position: absolute;
-              bottom: 50px;
-              right: -90px;
-              opacity: 0;
-              transition: .25s ease-in-out
-            }
-            #yoyo:hover {
-              opacity: 1;
-              right: 0;
-            }
-          </style>
-      </head>
-      <body>
-        <img  src="https://cdn.jsdelivr.net/gh/youngjuning/images/20210817163229.png" width="100" />
-        <a href="https://juejin.cn"><img id="yoyo" src="https://cdn.jsdelivr.net/gh/youngjuning/images/20210817163229.png" width="100" /></a>
-      </body>
-      </html>
-    `;
+		<html lang="en">
+		<head>
+		<meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}'; ;">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
+		<link href="${styleMainUri}" rel="stylesheet">
+    <script type="module"  nonce="${nonce}" src="${scriptUri}"></script>
+    </head>
+        <body>
+          <div id="app"></div>
+        </body>
+	</html>`;
     }
   }

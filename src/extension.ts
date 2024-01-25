@@ -8,7 +8,7 @@ import {
   import ReaderViewProvider from './web';
 export function activate(context: ExtensionContext) {
 
-	const readerViewProvider = new ReaderViewProvider(context.extensionUri);
+	const readerViewProvider = new ReaderViewProvider(context);
 	window.registerWebviewViewProvider('resin.open', readerViewProvider, {
 	  webviewOptions: {
 		retainContextWhenHidden: true,
