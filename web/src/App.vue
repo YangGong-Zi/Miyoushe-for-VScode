@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <div style="width: 100%;height: 100%">
+  <div class="w-full h-full">
     <RouterView />
   </div>
 </template>
