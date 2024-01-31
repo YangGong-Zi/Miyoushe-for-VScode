@@ -8,6 +8,10 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  server: {
+    open: true,
+    port: 8080
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -19,12 +23,9 @@ export default defineConfig({
     assetsDir: 'static',
     rollupOptions: {
       output: {
-        // 入口文件名
-        // entryFileNames: 'main.js',
-        // 块文件名
-        chunkFileNames: 'main.js',
-        // // 资源文件名 css 图片等等
-        // assetFileNames: 'static',
+        chunkFileNames: 'static/js/main.js',
+        entryFileNames: 'static/js/main.js',
+        assetFileNames: 'static/[ext]/main.[ext]'
       },
     },
   },

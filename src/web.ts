@@ -20,8 +20,8 @@ export default class ReaderViewProvider implements WebviewViewProvider {
         this._view.webview.html = this.getHtmlForWebview(this._view.webview);
     }
     private getHtmlForWebview(webview: vscode.Webview) {
-        const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'dist', 'static/index-tQv3iZGc.js'));
-        const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'dist', 'static/index-HGnRy7eK.css'));
+        const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'dist', 'static/js/main.js'));
+        const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'dist', 'static/css/main.css'));
         // Use a nonce to 只允许特定脚本运行.
         const nonce = getNonce();
         return `
