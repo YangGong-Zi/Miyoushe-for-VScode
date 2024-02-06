@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { onMounted } from 'vue'
+import { RouterView, useRouter } from 'vue-router'
+const router = useRouter()
+onMounted(() => {
+  router.push('/')
+})
 </script>
 
 <template>
-  <div class="w-full h-full">
+  <div style="width: 100%; height: 100%">
     <RouterView />
   </div>
 </template>

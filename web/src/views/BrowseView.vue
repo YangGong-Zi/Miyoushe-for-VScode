@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-const src = ref('http://42.194.198.23')
+// import { ref } from 'vue'
+// const src = ref('http://42.194.198.23')
 </script>
 
 <template>
   <main class="main">
-    <button class="btn btn-primary">Hello daisyui</button>
-
+    <p style="color: red">233</p>
   </main>
 </template>
 <style>
@@ -14,6 +13,6 @@ const src = ref('http://42.194.198.23')
   width: 100%;
   height: 100%;
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 </style>

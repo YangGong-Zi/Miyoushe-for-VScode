@@ -22,6 +22,7 @@ export default class ReaderViewProvider implements WebviewViewProvider {
     private getHtmlForWebview(webview: vscode.Webview) {
         const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'dist', 'static/js/main.js'));
         const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'dist', 'static/css/main.css'));
+        const iconUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'dist', 'favicon.ico'));
         // Use a nonce to 只允许特定脚本运行.
         const nonce = getNonce();
         return `
@@ -31,7 +32,7 @@ export default class ReaderViewProvider implements WebviewViewProvider {
           <meta charset="UTF-8">
           <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}'; ;">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="icon" href="/favicon.ico">
+          <link rel="icon" href="${iconUri}">
           <link href="${styleMainUri}" rel="stylesheet">
           <script type="module"  nonce="${nonce}" src="${scriptUri}"></script>
           </head>
