@@ -13,6 +13,18 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    host: true,
+    port: 8090, // 启动端口
+    // 设置代理
+    proxy: {
+      '/api': {
+        target: 'https://bbs-api.miyoushe.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(new RegExp('/api'), '')
+      }
+    }
+  },
   base: './', // 空字符串或 `./`（用于嵌入形式的开发）
   build: {
     outDir: '../dist/', // 打包目录
