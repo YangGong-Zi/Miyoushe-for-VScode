@@ -3,32 +3,45 @@ import { onMounted } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
 const router = useRouter()
 onMounted(() => {
-  router.push('/')
+  // router.push('/')
 })
 </script>
 
 <template>
-  <div class="w-[340px] h-full m-auto">
+  <div class="w-[380px] h-full m-auto">
     <div class="navbar bg-base-100">
       <div class="flex-none">
-        <button class="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="inline-block w-5 h-5 stroke-current"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- Page content here -->
+          <label for="my-drawer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block w-5 h-5 stroke-current"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </label>
+        </div>
+        <div class="drawer-side">
+          <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+          <ul class="min-h-full p-4 menu w-80 bg-base-200 text-base-content">
+            <!-- Sidebar content here -->
+            <li><a>Home</a></li>
+            <li><a>官方</a></li>
+            <li><a>cos</a></li>
+          </ul>
+        </div>
       </div>
       <div class="flex-1">
-        <a class="text-xl btn btn-ghost">daisyUI</a>
+        <routerLink to="/" class="text-xl btn btn-ghost">Miyoushe</routerLink>
       </div>
       <div class="flex-none">
         <button class="btn btn-square btn-ghost">

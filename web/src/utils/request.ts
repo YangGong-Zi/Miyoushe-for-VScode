@@ -2,7 +2,7 @@ import axios, {  AxiosError ,type AxiosRequestConfig} from 'axios'
 
 const service = axios.create({
     timeout: 60000,
-    baseURL:'/api'
+    baseURL: import.meta.env.VITE_BASE_API
 })
   // 请求拦截器
 service.interceptors.request.use(
