@@ -30,13 +30,13 @@ onMounted(() => {
             </svg>
           </label>
         </div>
-        <div class="drawer-side">
+        <div class="z-50 drawer-side">
           <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
           <ul class="min-h-full p-4 menu w-80 bg-base-200 text-base-content">
             <!-- Sidebar content here -->
-            <li><a>Home</a></li>
-            <li><a>官方</a></li>
-            <li><a>cos</a></li>
+            <li><router-link to="/">Home</router-link></li>
+            <li><router-link to="/OfficialView">官方</router-link></li>
+            <li><router-link to="/CosView">cos</router-link></li>
           </ul>
         </div>
       </div>
