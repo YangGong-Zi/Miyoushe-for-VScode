@@ -9,7 +9,7 @@ onMounted(() => {
 
 <template>
   <div class="w-[380px] h-full m-auto">
-    <div class="navbar bg-base-100">
+    <div class="fixed w-[380px] top-0 z-10 shadow-xl navbar bg-base-100">
       <div class="flex-none">
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content">
@@ -61,7 +61,11 @@ onMounted(() => {
         </button>
       </div>
     </div>
-    <RouterView />
+    <router-view v-slot="{ Component }" class="mt-[65px]">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
   </div>
 </template>
 
