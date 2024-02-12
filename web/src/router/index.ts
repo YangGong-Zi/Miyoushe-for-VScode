@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CosView from '../views/CosView.vue'
-import HomeView from '../views/HomeView.vue';
+import StrategyView from '../views/StrategyView.vue';
 import OfficialView from '../views/OfficialView.vue';
 
 const router = createRouter({
@@ -8,8 +8,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'HomeView',
-      component: HomeView
+      name: 'OfficialView',
+      component: OfficialView
     },
     {
       path: '/CosView',
@@ -20,9 +20,9 @@ const router = createRouter({
       component: CosView
     },
     {
-      path: '/OfficialView',
-      name: 'OfficialView',
-      component: OfficialView
+      path: '/StrategyView',
+      name: 'StrategyView',
+      component: StrategyView
     },
   ]
 })

@@ -34,9 +34,9 @@ onMounted(() => {
           <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
           <ul class="min-h-full p-4 menu w-80 bg-base-200 text-base-content">
             <!-- Sidebar content here -->
-            <li><router-link to="/">Home</router-link></li>
-            <li><router-link to="/OfficialView">官方</router-link></li>
-            <li><router-link to="/CosView">cos</router-link></li>
+            <li><router-link to="/">官方</router-link></li>
+            <li><router-link to="/StrategyView">攻略</router-link></li>
+            <li><router-link to="/CosView">Cos</router-link></li>
           </ul>
         </div>
       </div>

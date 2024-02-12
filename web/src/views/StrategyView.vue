@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { getNewsList } from '@/api/official'
+import { getForumPostList } from '@/api/strategy'
 import { onMounted, ref } from 'vue'
 const params = ref({
-  gids: 2,
+  forum_id: 43,
+  is_good: false,
+  is_hot: false,
   page_size: 20,
-  type: 2
+  sort_type: 1
 })
 const cosDataArray = ref()
 onMounted(() => {
-  getNewsList(params.value).then((res: any) => {
+  getForumPostList(params.value).then((res: any) => {
     const { message, data } = res
     if (message === 'OK') {
       cosDataArray.value = data?.list ?? []
