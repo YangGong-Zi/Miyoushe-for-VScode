@@ -1,4 +1,6 @@
 import daisyui from 'daisyui'
+import { useThemeStore } from './src/stores/Theme.ts'
+// const { Theme } = useThemeStore()
 export default {
   content: ['./src/**/*.{vue,html,js}'],
   darkMode: false, // or 'media' or 'class'
@@ -8,5 +10,8 @@ export default {
   variants: {
     extend: {}
   },
-  plugins: [daisyui]
+  plugins: [daisyui],
+  daisyui: {
+    themes: 'dark'
+  }
 }

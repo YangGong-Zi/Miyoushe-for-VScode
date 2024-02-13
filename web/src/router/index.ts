@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CosView from '../views/CosView.vue'
-import StrategyView from '../views/StrategyView.vue';
-import OfficialView from '../views/OfficialView.vue';
+import CosView from '@/views/CosView.vue'
+import StrategyView from '@/views/StrategyView.vue';
+import OfficialView from '@/views/OfficialView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
