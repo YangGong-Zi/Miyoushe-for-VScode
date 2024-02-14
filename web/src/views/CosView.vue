@@ -23,8 +23,8 @@ onMounted(() => {
 <template>
   <main>
     <div class="shadow-xl card bg-base-100 my-[10px]" v-for="item in cosDataArray" :key="item">
-      <figure>
-        <img :src="item?.post?.cover" alt="Shoes" />
+      <figure class="w-full h-[150px]">
+        <img :src="item?.post?.cover" alt="Shoes" class="object-contain" />
       </figure>
       <div class="flex flex-row card-body text-nowrap">
         <div class="avatar">
