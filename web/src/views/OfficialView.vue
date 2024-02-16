@@ -21,7 +21,7 @@ onMounted(() => {
   <main>
     <div class="shadow-xl card bg-base-100 my-[10px]" v-for="item in cosDataArray" :key="item">
       <figure>
-        <img :src="item?.post?.cover" alt="Shoes" />
+        <img :src="item?.post?.cover || item?.image_list[0]?.url" alt="Shoes" />
       </figure>
       <div class="flex flex-row card-body text-nowrap">
         <div class="avatar">
@@ -29,12 +29,23 @@ onMounted(() => {
             <img :src="item?.user?.avatar_url" />
           </div>
         </div>
-        <div>
-          <h2 class="card-title">{{ item?.user?.nickname }}</h2>
-          <p class="text-wrap">{{ item?.user?.introduce }}</p>
+        <div class="w-full h-full overflow-hidden">
+          <h2 class="w-full overflow-hidden break-words font-[600] text-[1.25rem] text-ellipsis">
+            {{ item?.post?.subject }}
+          </h2>
+          <p class="text-wrap over-line">{{ item?.post?.content }}</p>
         </div>
       </div>
     </div>
   </main>
 </template>
-<style></style>
+<style>
+.over-line {
+  height: 100%;
+  word-break: break-all;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+</style>
