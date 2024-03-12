@@ -2,7 +2,10 @@ import axios, {  AxiosError ,type AxiosRequestConfig} from 'axios'
 
 const service = axios.create({
     timeout: 60000,
-    baseURL: import.meta.env.VITE_BASE_API
+    baseURL: import.meta.env.VITE_BASE_API,
+    headers: {
+      "Referer": "https://www.miyoushe.com/",
+    },
 })
   // 请求拦截器
 service.interceptors.request.use(

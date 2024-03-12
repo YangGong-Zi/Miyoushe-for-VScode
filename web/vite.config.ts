@@ -21,7 +21,10 @@ export default defineConfig({
       '/api': {
         target: 'https://bbs-api.miyoushe.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(new RegExp('/api'), '')
+        rewrite: (path) => path.replace(new RegExp('/api'), ''),
+        headers: {
+          "Referer": "https://www.miyoushe.com/",
+        }
       }
     }
   },
