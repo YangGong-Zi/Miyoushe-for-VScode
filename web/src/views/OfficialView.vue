@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { getNewsList } from '@/api/official'
-import { onMounted, ref } from 'vue'
+import {  onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+
 const params = ref({
   gids: 2,
   page_size: 20,
   type: 2
 })
 const cosDataArray = ref()
+const router = useRouter()
+function goDetail(id: string) {
+  router.push({ name: 'OfficialDetailView', query: { post_id: id } })
+}
 onMounted(() => {
   getNewsList(params.value).then((res: any) => {
     const { message, data } = res
@@ -19,7 +25,12 @@ onMounted(() => {
 
 <template>
   <main>
-    <div class="shadow-xl card bg-base-100 my-[10px]" v-for="item in cosDataArray" :key="item">
+    <div
+      class="shadow-xl card bg-base-100 my-[10px] cursor-pointer"
+      v-for="item in cosDataArray"
+      :key="item"
+      @click="goDetail(item?.post?.post_id)"
+    >
       <figure>
         <img :src="item?.post?.cover || item?.image_list[0]?.url" alt="Shoes" />
       </figure>

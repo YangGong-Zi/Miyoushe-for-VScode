@@ -3,7 +3,7 @@ import CosView from '@/views/CosView.vue'
 import StrategyView from '@/views/StrategyView.vue';
 import OfficialView from '@/views/OfficialView.vue';
 import StrategyDetailView from '@/views/StrategyDetailView.vue';
-
+import OfficialDetailView from '@/views/OfficialDetailView.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -29,6 +29,11 @@ const router = createRouter({
       path: '/StrategyDetailView',
       name: 'StrategyDetailView',
       component: StrategyDetailView
+    },
+    {
+      path: '/OfficialDetailView',
+      name: 'OfficialDetailView',
+      component: OfficialDetailView
     },
   ]
 })
