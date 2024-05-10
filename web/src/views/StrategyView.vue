@@ -2,6 +2,7 @@
 import { getForumPostList } from '@/api/strategy'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+
 const params = ref({
   forum_id: 43,
   is_good: false,
@@ -11,6 +12,11 @@ const params = ref({
 })
 const cosDataArray = ref()
 const router = useRouter()
+
+function goDetail(id: string) {
+  router.push({ name: 'StrategyDetailView', query: { post_id: id } })
+}
+
 onMounted(() => {
   getForumPostList(params.value).then((res: any) => {
     const { message, data } = res
@@ -19,14 +25,12 @@ onMounted(() => {
     }
   })
 })
-function goToDetail() {
-  router.push('/StrategyDetailView')
-}
 </script>
 
 <template>
   <main>
-    <div class="shadow-xl card bg-base-100 my-[10px]" v-for="item in cosDataArray" :key="item">
+    <div class="shadow-xl card bg-base-100 my-[10px] cursor-pointer" v-for="item in cosDataArray" :key="item"
+         @click="goDetail(item?.post?.post_id)">
       <figure class="w-full h-[150px]" @click="goToDetail">
         <img
           :src="item?.post?.cover || item?.image_list[0]?.url"
